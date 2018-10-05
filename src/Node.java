@@ -10,9 +10,10 @@ public class Node
 		name = " ";
 	}
 	
-	public Node(int num, String newName, char[]nodeDependencies){
+	public Node(int num, int depSize, String newName, char[]nodeDependencies){
 		size = num;
 		name = newName;
+		dependencies = new Char[depSize];
 		dependencies = nodeDependencies;
 	}
 	public void setSize(int num){
@@ -20,7 +21,8 @@ public class Node
 		size = num;
 	}
 
-	public void setDependencies(char[] nodeDependencies){
+	public void setDependencies(char[] nodeDependencies, int depSize){
+		dependencies = new Char[depSize];
 		dependencies = nodeDependencies;
 	}
 	
