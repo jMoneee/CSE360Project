@@ -13,10 +13,9 @@ public class Node
 	public Node(int num, int depSize, String newName, char[]nodeDependencies){
 		size = num;
 		name = newName;
-		dependencies = new Char[depSize];
+		dependencies = new char[depSize];
 		for(int i=0; i<depSize-1; i++)
-			depedencies[i]=nodDependencies[i];
-		dependencies = nodeDependencies;
+			dependencies[i]=nodeDependencies[i];
 	}
 	public void setSize(int num){
 		
@@ -26,7 +25,7 @@ public class Node
 	public void setDependencies(char[] nodeDependencies, int depSize){
 		dependencies = new Char[depSize];
 		for(int i=0; i<depSize-1; i++)
-			depedencies[i]=nodDependencies[i];
+			depedencies[i]=nodeDependencies[i];
 	}
 	
 	public void setName(String newName){
