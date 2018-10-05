@@ -16,7 +16,6 @@ public class Node
 		dependencies = new Char[depSize];
 		for(int i=0; i<depSize-1; i++)
 			depedencies[i]=nodDependencies[i];
-		dependencies = nodeDependencies;
 	}
 	public void setSize(int num){
 		
