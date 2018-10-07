@@ -23,9 +23,9 @@ public class Node
 	}
 
 	public void setDependencies(char[] nodeDependencies, int depSize){
-		dependencies = new Char[depSize];
-		for(int i=0; i<depSize-1; i++)
-			depedencies[i]=nodeDependencies[i];
+		dependencies = new char[depSize];
+		for(int i=0; i<(depSize-1); i++)
+			dependencies[i]=nodeDependencies[i];
 	}
 	
 	public void setName(String newName){
