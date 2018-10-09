@@ -44,6 +44,7 @@ public class PathMaker {
 					if(nodes.get(m).getDependencies().size()>1) {
 						for(int p = 0; p<nodes.get(m).getDependencies().size();p++) {
 							Path copiedPath = copyPath(newPath);
+							copiedPath.addNode(nodes.get(m));
 							buildPath(copiedPath, m, nodes);
 						}
 					}
@@ -82,6 +83,7 @@ public class PathMaker {
 				if(nodes.get(m).getDependencies().size()>1) {
 					for(int p = 0; p<nodes.get(m).getDependencies().size();p++) {
 						Path copiedPath = copyPath(newPath);
+						copiedPath.addNode(nodes.get(m));
 						buildPath(copiedPath, m, nodes);
 					}
 					
