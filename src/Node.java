@@ -74,6 +74,9 @@ public class Node
 	public ArrayList<String> getnodesThatDependOnThis(){
 		return nodesThatDependOnThis;
 	}
+	public int getNumOfDependentOn() {
+		return nodesThatDependOnThis.size();)
+	}
 	
 	
 }

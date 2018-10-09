@@ -16,7 +16,5 @@ public class Path {
 		duration += node.getSize();
 	}
 	
-	public Path copyPath(Path path) {
-		return path;
-	}
+	
 }
