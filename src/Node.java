@@ -5,7 +5,6 @@ public class Node
 	private int size;
 	private ArrayList<String> dependencies;
 	private String name;
-	private ArrayList<String> nodesThatDependOnThis; //fill once all nodes are entered
 	
 	public Node(){
 		size = 0;
@@ -45,12 +44,7 @@ public class Node
 	public String getName(){
 		return name;
 	}
-	public boolean isRoot() {
-		if(dependencies.size()==0) {
-			return true;
-		}
-		else
-			return false;
+
 		
 	}
 	public Boolean isDependantOn(String name) {
@@ -59,23 +53,6 @@ public class Node
 				return true;
 		}
 		return false;
-	}
-	public void addNodeThatDependOnThis(String nodeThatDepends) {
-		
-			nodesThatDependOnThis.add(nodeThatDepends);
-	}
-	public boolean hasNodesDependent() {
-		if(nodesThatDependOnThis.size()>0)
-			return false;
-		else 
-			return true;
-		
-	}
-	public ArrayList<String> getnodesThatDependOnThis(){
-		return nodesThatDependOnThis;
-	}
-	public int getNumOfDependentOn() {
-		return nodesThatDependOnThis.size();)
 	}
 	
 	
