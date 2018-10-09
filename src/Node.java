@@ -11,11 +11,11 @@ public class Node
 		name = " ";
 	}
 	
-	public Node(int num, int depSize, String newName, ArrayList<String> nodeDependencies){
+	public Node(int num, String newName, ArrayList<String> nodeDependencies){
 		size = num;
 		name = newName;
 		dependencies = new ArrayList<String>();
-		for(int i=0; i<depSize-1; i++)
+		for(int i=0; i<dependencies.size()-1; i++)
 			dependencies.set(i,nodeDependencies.get(i));
 	}
 	public void setSize(int num){

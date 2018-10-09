@@ -15,6 +15,12 @@ public class Path {
 		activities.add(node.getName());
 		duration += node.getSize();
 	}
+	public ArrayList<String> getActivities() {
+		return activities;
+	}
+	public int getDuration() {
+		return duration;
+	}
 	
 	
 }
