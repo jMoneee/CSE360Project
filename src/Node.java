@@ -46,13 +46,19 @@ public class Node
 	}
 
 		
-	}
+	
 	public Boolean isDependantOn(String name) {
 		for(int i = 0; i<dependencies.size(); i++) {
 			if(name.equals(dependencies.get(i)))
 				return true;
 		}
 		return false;
+	}
+	public Boolean hasDependencies() {
+		if(dependencies.size()==0)
+			return false;
+		else 
+			return true;
 	}
 	
 	
