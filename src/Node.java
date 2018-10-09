@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 
 public class Node 
 {
 	private int size;
-	private char[] dependencies;
+	private ArrayList<String> dependencies;
 	private String name;
 	
 	public Node(){
@@ -10,22 +11,22 @@ public class Node
 		name = " ";
 	}
 	
-	public Node(int num, int depSize, String newName, char[]nodeDependencies){
+	public Node(int num, String newName, ArrayList<String> nodeDependencies){
 		size = num;
 		name = newName;
-		dependencies = new char[depSize];
-		for(int i=0; i<depSize-1; i++)
-			dependencies[i]=nodeDependencies[i];
+		dependencies = new ArrayList<String>();
+		for(int i=0; i<dependencies.size()-1; i++)
+			dependencies.set(i,nodeDependencies.get(i));
 	}
 	public void setSize(int num){
 		
 		size = num;
 	}
 
-	public void setDependencies(char[] nodeDependencies, int depSize){
-		dependencies = new Char[depSize];
-		for(int i=0; i<depSize-1; i++)
-			depedencies[i]=nodeDependencies[i];
+	public void setDependencies(ArrayList<String> nodeDependencies){
+		dependencies = new ArrayList<String>();
+		for(int i=0; i<(nodeDependencies.size()-1); i++)
+			dependencies.set(i,nodeDependencies.get(i));
 	}
 	
 	public void setName(String newName){
@@ -36,12 +37,29 @@ public class Node
 		return size;
 	}
 	
-	public char[] getDependencies(){
+	public ArrayList<String> getDependencies(){
 		return dependencies;
 	}
 	
 	public String getName(){
 		return name;
 	}
+
+		
+	
+	public Boolean isDependantOn(String name) {
+		for(int i = 0; i<dependencies.size(); i++) {
+			if(name.equals(dependencies.get(i)))
+				return true;
+		}
+		return false;
+	}
+	public Boolean hasDependencies() {
+		if(dependencies.size()==0)
+			return false;
+		else 
+			return true;
+	}
+	
 	
 }
