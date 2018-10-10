@@ -93,7 +93,7 @@ public class gui extends JFrame {
 				"";
 					
 					JOptionPane pane = new JOptionPane(about);
-					JDialog window = pane.createDialog("About");
+					JDialog window = pane.createDialog("About ");
 					window.setSize(1800,300);
 					window.show();
 			}
@@ -210,6 +210,24 @@ public class gui extends JFrame {
 				ArrayList<Node> joe = p.getActivities();
 				for(int i=0; i<joe.size();i++)
 					names+=joe.get(i).getName();
+				
+				PathMaker pathM = new PathMaker();
+                ArrayList<Paths> pathList;
+
+                pathList = pathM.MakePaths(joe);
+
+                Path temp;
+                for (int i = 1; i < pathList.size(); i++) {
+                    for(int j = i ; j > 0 ; j--){
+                        if(pathList.get(j).getDuration() < pathList.get(j-1).getDuration()){
+                            temp = pathList.get(j);
+                            pathList.set(j, pathList.get(j-1));
+
+                            pathList.set(j-1, temp);
+                        }
+                    }
+                }
+				
 				
 				input+=n.getName()+"\t\t\t"+n.printDependencies()+" \t\t\t"+n.getSize()+"\n";
 				textField_3.setText(input);
