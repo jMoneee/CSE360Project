@@ -14,9 +14,7 @@ public class Node
 	public Node(int num, String newName, ArrayList<String> nodeDependencies){
 		size = num;
 		name = newName;
-		dependencies = new ArrayList<String>();
-		for(int i=0; i<dependencies.size()-1; i++)
-			dependencies.set(i,nodeDependencies.get(i));
+		dependencies = nodeDependencies;
 	}
 	public void setSize(int num){
 		
@@ -61,5 +59,11 @@ public class Node
 			return true;
 	}
 	
-	
+	public String printDependencies(){
+		String depens="";
+		depens+=dependencies.get(0);
+		for(int i=1; i<dependencies.size(); i++)
+			depens+=", "+dependencies.get(i);
+		return depens;
+	}
 }

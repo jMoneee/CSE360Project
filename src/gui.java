@@ -23,6 +23,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 
 public class gui extends JFrame {
 
@@ -30,9 +31,9 @@ public class gui extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-
+	private JTextArea textField_3;
+	private JTextArea textField_4;
+	Path p = new Path();
 	/**
 	 * Launch the application.
 	 */
@@ -86,6 +87,8 @@ public class gui extends JFrame {
 		btnRestart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("restart clicked");
+				p = new Path();
+				textField_4.setText("");
 			}
 		});
 		panel.add(btnRestart);
@@ -93,7 +96,7 @@ public class gui extends JFrame {
 		JButton btnNewButton_1 = new JButton("Exit");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("exit clicked");
+				System.exit(0);
 			}
 		});
 		panel.add(btnNewButton_1);
@@ -146,37 +149,42 @@ public class gui extends JFrame {
 		btnEnterActivity.setBounds(494, 64, 141, 35);
 		panel_1.add(btnEnterActivity);
 		btnEnterActivity.addActionListener(new ActionListener() {
-			Path p = new Path();
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("node created");
 				ArrayList<String> depen = new ArrayList<String>();
+				if(textField_2.getText().equals(""))
+					textField_2.setText(" ");
 				for(int i=0; i<textField_2.getText().length();i++)
 					depen.add(textField_2.getText().substring(i, i+1));
-
 				Node n = new Node(Integer.parseInt(textField_1.getText()), textField.getText(), depen);
 				p.addNode(n);
 				PathMaker m = new PathMaker();
-				
+				String names="",input=textField_3.getText();
 				ArrayList<Node> joe = p.getActivities();
-				String names="";
 				for(int i=0; i<joe.size();i++)
 					names+=joe.get(i).getName();
 				
+				input+=n.getName()+"\t\t\t"+n.printDependencies()+" \t\t\t"+n.getSize()+"\n";
+				textField_3.setText(input);
 				textField_4.setText(names);
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
 			}
 		});
 		
-		textField_3 = new JTextField();
+		textField_3 = new JTextArea();
 		textField_3.setBounds(10, 166, 669, 248);
 		panel_1.add(textField_3);
 		textField_3.setColumns(10);
+		textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Output", null, panel_2, null);
 		
 		panel_2.setLayout(null);
 		
-		textField_4 = new JTextField("List of Output paths");
+		textField_4 = new JTextArea("List of Output paths");
 		textField_4.setBounds(21, 44, 658, 349);
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
