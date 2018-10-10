@@ -14,7 +14,9 @@ public class Node
 	public Node(int num, String newName, ArrayList<String> nodeDependencies){
 		size = num;
 		name = newName;
+
 		dependencies = nodeDependencies;
+
 	}
 	public void setSize(int num){
 		
@@ -58,6 +60,8 @@ public class Node
 		else 
 			return true;
 	}
+
+
 	
 	public String printDependencies(){
 		String depens="";

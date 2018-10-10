@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 
 public class Path {
+
 	ArrayList<Node> activities = new ArrayList<Node>();
+
 	int duration;
 	
 	public Path(/*String rootName, String firstAct, int _duration*/) {
@@ -12,10 +14,12 @@ public class Path {
 	}
 	
 	public void addNode(Node node) {
+
 		activities.add(node);
 		duration += node.getSize();
 	}
 	public ArrayList<Node> getActivities() {
+
 		return activities;
 	}
 	public int getDuration() {

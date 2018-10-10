@@ -11,7 +11,9 @@ import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
+
 import java.awt.event.ActionEvent;
 import javax.swing.JSplitPane;
 import javax.swing.JScrollPane;
@@ -23,7 +25,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTabbedPane;
+
 import javax.swing.JTextArea;
+
 
 public class gui extends JFrame {
 
@@ -31,9 +35,11 @@ public class gui extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+
 	private JTextArea textField_3;
 	private JTextArea textField_4;
 	Path p = new Path();
+
 	/**
 	 * Launch the application.
 	 */
@@ -68,22 +74,27 @@ public class gui extends JFrame {
 		contentPane.add(panel);
 		
 		JButton btnAbout = new JButton("About");
+
 		btnAbout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("about clicked");
 			}
 		});
+
 		panel.add(btnAbout);
 		
 		JButton button = new JButton("Help");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				System.out.println("help clicked");
+
 			}
 		});
 		panel.add(button);
 		
 		JButton btnRestart = new JButton("Restart");
+
 		btnRestart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("restart clicked");
@@ -91,12 +102,15 @@ public class gui extends JFrame {
 				textField_4.setText("");
 			}
 		});
+
 		panel.add(btnRestart);
 		
 		JButton btnNewButton_1 = new JButton("Exit");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				System.exit(0);
+
 			}
 		});
 		panel.add(btnNewButton_1);
@@ -148,6 +162,7 @@ public class gui extends JFrame {
 		JButton btnEnterActivity = new JButton("Enter Activity");
 		btnEnterActivity.setBounds(494, 64, 141, 35);
 		panel_1.add(btnEnterActivity);
+
 		btnEnterActivity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("node created");
@@ -185,6 +200,7 @@ public class gui extends JFrame {
 		panel_2.setLayout(null);
 		
 		textField_4 = new JTextArea("List of Output paths");
+
 		textField_4.setBounds(21, 44, 658, 349);
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
