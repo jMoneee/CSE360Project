@@ -84,9 +84,17 @@ public class gui extends JFrame{
 		btnAbout.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				
-				JLabel about = new JLabel("Program lets you input activities and lets you track them");
-				about.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				String about= "The purpose of the program is to analyse an inputed set of nodes of a network diagram and determine all the paths as well as information about said paths. \r\n" + 
+						"\r\n" + 
+						"This project was created by the following people:\n" + 
+						"\n" + 
+						"Joseph Larsen\n" + 
+						"Adam Rubic\n" + 
+						"Kaisser Kelcho\n" + 
+						"Lukas Cronin\n" + 
+						"";
+				//JLabel about = new JLabel("Program lets you input activities and lets you track them");
+				//about.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				JOptionPane pane = new JOptionPane(about);
 				JDialog window = pane.createDialog("About");
 				window.setSize(1800,300);
@@ -101,9 +109,16 @@ public class gui extends JFrame{
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				
-				JLabel help = new JLabel("Input activity name, duration and dependencies. \nPress 'Enter Activity' to save the data. Change tab to 'Output' to see results.");
-				help.setFont(new Font("Tahoma", Font.PLAIN, 30));
-				JOptionPane pane = new JOptionPane(help);
+				String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
+						+ "The text from these fields is taken from these fields once the ‘Enter Activity’ button is pressed and used to create the activities in the list. "
+						+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
+						+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
+						"\n" + 
+						"The Output tab will only have one field which will display the list of paths and all needed information about the paths. The output tab will be update every time a new node is added.\r\n" + 
+						"";
+				//JLabel help = new JLabel("Input activity name, duration and dependencies. \nPress 'Enter Activity' to save the data. Change tab to 'Output' to see results.");
+				//help.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				JOptionPane pane = new JOptionPane(helpBut);
 				JDialog window = pane.createDialog("Help");
 				window.setSize(1800,300);
 				window.show();
@@ -184,23 +199,32 @@ public class gui extends JFrame{
 		
 		JButton btnEnterActivity = new JButton("Enter Activity");
 		btnEnterActivity.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		btnEnterActivity.setBounds(632, 48, 229, 61);
+		btnEnterActivity.setBounds(632, 50, 229, 61);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(textField.getText()!=null && textField_1.getText()!=null&&textField_2.getText()!=null)
 				{
 				b.setName(textField.getText());
 				b.setDuration(textField_1.getText());
-				b.hasDependencies(textField_2.getText());
+				b.setDependencies(textField_2.getText());
 				}
 			}
 		});
 		panel_1.add(btnEnterActivity);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(10, 162, 851, 417);
+		textField_3.setBounds(10, 162, 851, 302);
 		panel_1.add(textField_3);
 		textField_3.setColumns(10);
+		
+		JButton btnCreateNetworkPath = new JButton("Create Network Path");
+		btnCreateNetworkPath.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnCreateNetworkPath.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnCreateNetworkPath.setBounds(276, 472, 364, 96);
+		panel_1.add(btnCreateNetworkPath);
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Output",null , panel_2, null);
@@ -217,5 +241,4 @@ public class gui extends JFrame{
 		lblOutputPaths.setBounds(367, 0, 253, 37);
 		panel_2.add(lblOutputPaths);
 	}
-	
 }
