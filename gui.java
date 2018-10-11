@@ -84,7 +84,8 @@ public class gui extends JFrame{
 		btnAbout.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				String about= "The purpose of the program is to analyse an inputed set of nodes of a network diagram and determine all the paths as well as information about said paths. \r\n" + 
+				String about= "The purpose of the program is to analyse an inputed set of nodes of a network diagram "
+						+ "\nand determine all the paths as well as information about said paths. \r\n" + 
 						"\r\n" + 
 						"This project was created by the following people:\n" + 
 						"\n" + 
@@ -97,7 +98,7 @@ public class gui extends JFrame{
 				//about.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				JOptionPane pane = new JOptionPane(about);
 				JDialog window = pane.createDialog("About");
-				window.setSize(1800,300);
+				window.setSize(600,300);
 				window.show();
 			}
 		});
@@ -114,13 +115,14 @@ public class gui extends JFrame{
 						+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
 						+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
 						"\n" + 
-						"The Output tab will only have one field which will display the list of paths and all needed information about the paths. The output tab will be update every time a new node is added.\r\n" + 
+						"The Output tab will only have one field which will display the list of paths and all needed information about the paths. "
+						+ "\nThe output tab will be update every time a new node is added.\r\n" + 
 						"";
 				//JLabel help = new JLabel("Input activity name, duration and dependencies. \nPress 'Enter Activity' to save the data. Change tab to 'Output' to see results.");
 				//help.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				JOptionPane pane = new JOptionPane(helpBut);
 				JDialog window = pane.createDialog("Help");
-				window.setSize(1800,300);
+				window.setSize(1000,300);
 				window.show();
 			}
 		});
@@ -238,7 +240,7 @@ public class gui extends JFrame{
 		
 		JLabel lblOutputPaths = new JLabel("Output Paths");
 		lblOutputPaths.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblOutputPaths.setBounds(367, 0, 253, 37);
+		lblOutputPaths.setBounds(374, 0, 191, 37);
 		panel_2.add(lblOutputPaths);
 	}
 }
