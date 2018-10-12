@@ -24,7 +24,9 @@ public class Node
 	}
 
 	public void setDependencies(ArrayList<String> nodeDependencies){
-			dependencies = nodeDependencies;
+		dependencies = new ArrayList<String>();
+		for(int i=0; i<(nodeDependencies.size()-1); i++)
+			dependencies.set(i,nodeDependencies.get(i));
 	}
 	
 	public void setName(String newName){
@@ -53,7 +55,7 @@ public class Node
 		return false;
 	}
 	public Boolean hasDependencies() {
-		if(this.dependencies.isEmpty())
+		if(dependencies.size()==0)
 			return false;
 		else 
 			return true;
@@ -63,8 +65,6 @@ public class Node
 	
 	public String printDependencies(){
 		String depens="";
-		if(this.hasDependencies()==false)
-			return depens;
 		depens+=dependencies.get(0);
 		for(int i=1; i<dependencies.size(); i++)
 			depens+=", "+dependencies.get(i);
