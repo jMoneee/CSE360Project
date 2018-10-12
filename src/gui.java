@@ -80,8 +80,6 @@ public class gui extends JFrame {
 		JButton btnAbout = new JButton("About");
 
 		btnAbout.addActionListener(new ActionListener() {
-
-
 	public void actionPerformed(ActionEvent e) {
 					
 		String about= "The purpose of the program is to analyse an inputed set of nodes of a network diagram and determine all the paths as well as information about said paths. \r\n" + 
@@ -98,7 +96,6 @@ public class gui extends JFrame {
 					JDialog window = pane.createDialog("About ");
 					window.setSize(1800,300);
 					window.show();
-
 					
 					PathMaker pathM = new PathMaker();
 	                ArrayList<Path> pathList;
@@ -113,7 +110,6 @@ public class gui extends JFrame {
 	                	}
 	                	System.out.println("");
 	                }
-
 			}
 		});
 
@@ -123,8 +119,8 @@ public class gui extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
-							+ "The text from these fields is taken from these fields once the ‘Enter Activity’ button is pressed and used to create the activities in the list. "
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity�s name, duration and dependencies. \n"
+							+ "The text from these fields is taken from these fields once the �Enter Activity� button is pressed and used to create the activities in the list. "
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
 							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
 							"\n" + 
@@ -137,25 +133,7 @@ public class gui extends JFrame {
 					window.show();
 				}
 
-
-				public void actionPerformed(ActionEvent e) {
-					
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
-							+ "The text from these fields is taken from these fields once the ‘Enter Activity’ button is pressed and used to create the activities in the list. "
-							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
-							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
-							"\n" + 
-							"The Output tab will only have one field which will display the list of paths and all needed information about the paths. The output tab will be update every time a new node is added.\r\n" + 
-							"";
-					
-					JOptionPane pane = new JOptionPane(helpBut);
-					JDialog window = pane.createDialog("Help");
-					window.setSize(1800,300);
-					window.show();
-				}
-
-			}
-
+			
 		});
 		panel.add(button);
 		
@@ -273,24 +251,6 @@ public class gui extends JFrame {
                         }
                     }
                 }*/
-				
-				
-				PathMaker pathM = new PathMaker();
-                ArrayList<Paths> pathList;
-
-                pathList = pathM.MakePaths(joe);
-
-                Path temp;
-                for (int i = 1; i < pathList.size(); i++) {
-                    for(int j = i ; j > 0 ; j--){
-                        if(pathList.get(j).getDuration() < pathList.get(j-1).getDuration()){
-                            temp = pathList.get(j);
-                            pathList.set(j, pathList.get(j-1));
-
-                            pathList.set(j-1, temp);
-                        }
-                    }
-                }
 				
 				
 				input+=n.getName()+"\t\t\t"+n.printDependencies()+" \t\t\t"+n.getSize()+"\n";
