@@ -137,6 +137,23 @@ public class gui extends JFrame {
 					window.show();
 				}
 
+
+				public void actionPerformed(ActionEvent e) {
+					
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
+							+ "The text from these fields is taken from these fields once the ‘Enter Activity’ button is pressed and used to create the activities in the list. "
+							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
+							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
+							"\n" + 
+							"The Output tab will only have one field which will display the list of paths and all needed information about the paths. The output tab will be update every time a new node is added.\r\n" + 
+							"";
+					
+					JOptionPane pane = new JOptionPane(helpBut);
+					JDialog window = pane.createDialog("Help");
+					window.setSize(1800,300);
+					window.show();
+				}
+
 			}
 
 		});
