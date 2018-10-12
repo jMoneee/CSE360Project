@@ -94,7 +94,7 @@ public class gui extends JFrame {
 					
 					JOptionPane pane = new JOptionPane(about);
 					JDialog window = pane.createDialog("About ");
-					window.setSize(1800,300);
+					window.setSize(600,300);
 					window.show();
 					
 					PathMaker pathM = new PathMaker();
@@ -129,7 +129,7 @@ public class gui extends JFrame {
 					
 					JOptionPane pane = new JOptionPane(helpBut);
 					JDialog window = pane.createDialog("Help");
-					window.setSize(1800,300);
+					window.setSize(1000,300);
 					window.show();
 				}
 
@@ -263,9 +263,19 @@ public class gui extends JFrame {
 		});
 		
 		textField_3 = new JTextArea();
-		textField_3.setBounds(10, 166, 669, 248);
+		textField_3.setBounds(10, 166, 669, 302);
 		panel_1.add(textField_3);
 		textField_3.setColumns(10);
+		
+		JButton btnCreateNetworkPath = new JButton("Create Network Path");
+		btnCreateNetworkPath.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnCreateNetworkPath.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnCreateNetworkPath.setBounds(276, 472, 364, 96);
+		panel_1.add(btnCreateNetworkPath);
+		
 		textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 		
 		JPanel panel_2 = new JPanel();
