@@ -96,7 +96,7 @@ public class gui extends JFrame {
 					
 					JOptionPane pane = new JOptionPane(about);
 					JDialog window = pane.createDialog("About ");
-					window.setSize(600,300);
+					window.setSize(1800,300);
 					window.show();
 
 					
@@ -133,7 +133,7 @@ public class gui extends JFrame {
 					
 					JOptionPane pane = new JOptionPane(helpBut);
 					JDialog window = pane.createDialog("Help");
-					window.setSize(1000,300);
+					window.setSize(1800,300);
 					window.show();
 				}
 
@@ -213,14 +213,7 @@ public class gui extends JFrame {
 		btnEnterActivity.setBounds(494, 64, 141, 35);
 		panel_1.add(btnEnterActivity);
 
-		JButton btnCreateNetworkPath = new JButton("Create Network Path");
-		btnCreateNetworkPath.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnCreateNetworkPath.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		btnCreateNetworkPath.setBounds(276, 472, 364, 96);
-		panel_1.add(btnCreateNetworkPath);
+	
 		
 		btnEnterActivity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -310,8 +303,7 @@ public class gui extends JFrame {
 		textField_4.setColumns(10);
 		
 		JLabel lblOutputPaths = new JLabel("Output Paths");
-		lblOutputPaths.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblOutputPaths.setBounds(374, 0, 191, 37);
+		lblOutputPaths.setBounds(312, 0, 172, 26);
 		panel_2.add(lblOutputPaths);
 	}
 }
