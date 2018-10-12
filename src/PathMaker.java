@@ -121,17 +121,15 @@ public class PathMaker {
 		return 9999;
 	}
 	public ArrayList<Path> pathSort(ArrayList<Path> input){
-		Path temp;
-        for (int i = 1; i < input.size(); i++) {
-            for(int j = i ; j > 0 ; j--){
-                if(input.get(j).getDuration() < input.get(j-1).getDuration()){
-                    temp = input.get(j);
-                    input.set(j, input.get(j-1));
-
-                    input.set(j-1, temp);
-                }
-            }
-        }
+		for (int i = 0; i < input.size() - 1; i++) {
+			int j = i + 1;
+			Path tmp = input.get(j);
+			while (j > 0 && tmp.getDuration() > (input.get(j-1).getDuration())) {
+				input.set(j, input.get(j-1));
+				j--;
+			}
+			input.set(j, tmp);
+			}
         return input;
 	}
 public String getName()
