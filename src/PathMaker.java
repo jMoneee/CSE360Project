@@ -64,7 +64,26 @@ public class PathMaker {
 		
 		return paths;
 	}
-	
+
+	public ArrayList<Path> pathSort(ArrayList<Path> input){
+		Path temp;
+        for (int i = 1; i < input.size(); i++) {
+            for(int j = i ; j > 0 ; j--){
+                if(input.get(j).getDuration() < input.get(j-1).getDuration()){
+                    temp = input.get(j);
+                    input.set(j, input.get(j-1));
+
+                    input.set(j-1, temp);
+                }
+            }
+        }
+        return input;
+	}
+public String getName()
+{
+	return footName;
+}
+
 	public Path copyPath(Path path) {
 		return path;
 	}

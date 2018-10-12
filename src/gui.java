@@ -79,7 +79,8 @@ public class gui extends JFrame {
 		JButton btnAbout = new JButton("About");
 
 		btnAbout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+
+
 	public void actionPerformed(ActionEvent e) {
 					
 		String about= "The purpose of the program is to analyse an inputed set of nodes of a network diagram and determine all the paths as well as information about said paths. \r\n" + 
@@ -94,8 +95,24 @@ public class gui extends JFrame {
 					
 					JOptionPane pane = new JOptionPane(about);
 					JDialog window = pane.createDialog("About ");
-					window.setSize(1800,300);
+					window.setSize(600,300);
 					window.show();
+
+					
+					PathMaker pathM = new PathMaker();
+	                ArrayList<Path> pathList;
+	                pathList = pathM.MakePaths(joe);
+	                
+	                System.out.println("path size"+pathList.size());
+	                for(int i=0; i<pathList.size();i++)
+	                {
+	                	for(int j=0; j<pathList.get(i).getActivities().size();j++)
+	                	{
+	                		System.out.println(pathList.get(i).getActivities().get(j).getName());
+	                	}
+	                	System.out.println("");
+	                }
+
 			}
 		});
 
@@ -105,10 +122,10 @@ public class gui extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				public void actionPerformed(ActionEvent e) {
+
 					
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
-							+ "The text from these fields is taken from these fields once the ‘Enter Activity’ button is pressed and used to create the activities in the list. "
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activityâ€™s name, duration and dependencies. \n"
+							+ "The text from these fields is taken from these fields once the â€˜Enter Activityâ€™ button is pressed and used to create the activities in the list. "
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
 							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
 							"\n" + 
@@ -117,11 +134,13 @@ public class gui extends JFrame {
 					
 					JOptionPane pane = new JOptionPane(helpBut);
 					JDialog window = pane.createDialog("Help");
-					window.setSize(1800,300);
+					window.setSize(1000,300);
 					window.show();
 				}
 
-			}
+
+			
+
 		});
 		panel.add(button);
 		
@@ -211,24 +230,6 @@ public class gui extends JFrame {
 				for(int i=0; i<joe.size();i++)
 					names+=joe.get(i).getName();
 				
-				PathMaker pathM = new PathMaker();
-                ArrayList<Paths> pathList;
-
-                pathList = pathM.MakePaths(joe);
-
-                Path temp;
-                for (int i = 1; i < pathList.size(); i++) {
-                    for(int j = i ; j > 0 ; j--){
-                        if(pathList.get(j).getDuration() < pathList.get(j-1).getDuration()){
-                            temp = pathList.get(j);
-                            pathList.set(j, pathList.get(j-1));
-
-                            pathList.set(j-1, temp);
-                        }
-                    }
-                }
-				
-				
 				input+=n.getName()+"\t\t\t"+n.printDependencies()+" \t\t\t"+n.getSize()+"\n";
 				textField_3.setText(input);
 				textField_4.setText(names);
@@ -239,9 +240,19 @@ public class gui extends JFrame {
 		});
 		
 		textField_3 = new JTextArea();
-		textField_3.setBounds(10, 166, 669, 248);
+		textField_3.setBounds(10, 166, 669, 302);
 		panel_1.add(textField_3);
 		textField_3.setColumns(10);
+		
+		JButton btnCreateNetworkPath = new JButton("Create Network Path");
+		btnCreateNetworkPath.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnCreateNetworkPath.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnCreateNetworkPath.setBounds(276, 472, 364, 96);
+		panel_1.add(btnCreateNetworkPath);
+		
 		textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 		
 		JPanel panel_2 = new JPanel();
