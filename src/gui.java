@@ -44,6 +44,7 @@ public class gui extends JFrame {
 	Path p = new Path();
 	ArrayList <String> dependencyList = new ArrayList<String>();
 	ArrayList<Node> joe;
+    String output;
 	/**
 	 * Launch the application.
 	 */
@@ -97,19 +98,23 @@ public class gui extends JFrame {
 					window.setSize(600,300);
 					window.show();
 					
-					PathMaker pathM = new PathMaker();
+			/*		PathMaker pathM = new PathMaker();
 	                ArrayList<Path> pathList;
 	                pathList = pathM.MakePaths(joe);
 	                
-	                System.out.println("path size"+pathList.size());
+	                pathList = pathM.pathSort(pathList);
+	                //System.out.println("path size"+pathList.size());
+	                String output="";
 	                for(int i=0; i<pathList.size();i++)
 	                {
 	                	for(int j=0; j<pathList.get(i).getActivities().size();j++)
 	                	{
-	                		System.out.println(pathList.get(i).getActivities().get(j).getName());
+	                		output+=pathList.get(i).getActivities().get(j).getName();
 	                	}
-	                	System.out.println("");
+	                	output+=" "+pathList.get(i).getDuration();
+	                	output+="\n";
 	                }
+	                textField_4.setText(output);*/
 			}
 		});
 
@@ -136,7 +141,6 @@ public class gui extends JFrame {
 			
 		});
 		panel.add(button);
-		
 		JButton btnRestart = new JButton("Restart");
 
 		btnRestart.addActionListener(new ActionListener() {
@@ -148,7 +152,35 @@ public class gui extends JFrame {
 			}
 		});
 
+
 		panel.add(btnRestart);
+		
+		JButton btnProcess = new JButton("Process");
+
+		btnProcess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PathMaker pathM = new PathMaker();
+                ArrayList<Path> pathList;
+                pathList = pathM.MakePaths(joe);
+                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+                output ="Output Path(s): \n";
+                pathList = pathM.pathSort(pathList);
+                //System.out.println("path size"+pathList.size());
+                for(int i=0; i<pathList.size();i++)
+                {
+                	for(int j=0; j<pathList.get(i).getActivities().size();j++)
+                	{
+                		output+=pathList.get(i).getActivities().get(j).getName();
+                	}
+                	output+=" "+pathList.get(i).getDuration();
+                	output+="\n";
+                }
+                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 50));
+                textField_4.setText(output);
+			}
+		});
+		
+		panel.add(btnProcess);
 		
 		JButton btnNewButton_1 = new JButton("Exit");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -255,7 +287,7 @@ public class gui extends JFrame {
 				
 				input+=n.getName()+"\t\t\t"+n.printDependencies()+" \t\t\t"+n.getSize()+"\n";
 				textField_3.setText(input);
-				textField_4.setText(names);
+				//textField_4.setText(names);
 				textField.setText("");
 				textField_1.setText("");
 				textField_2.setText("");
@@ -282,13 +314,12 @@ public class gui extends JFrame {
 		tabbedPane.addTab("Output", null, panel_2, null);
 		
 		panel_2.setLayout(null);
-		
-		textField_4 = new JTextArea("List of Output paths");
 
+		textField_4 = new JTextArea("Output paths: \n");
+	    textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textField_4.setBounds(21, 44, 658, 349);
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
-		
 		JLabel lblOutputPaths = new JLabel("Output Paths");
 		lblOutputPaths.setBounds(312, 0, 172, 26);
 		panel_2.add(lblOutputPaths);
