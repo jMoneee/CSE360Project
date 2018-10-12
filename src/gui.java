@@ -172,6 +172,18 @@ public class gui extends JFrame {
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
 				}
+				if(pathM.findFirst(joe)==8888) {
+					String errorExtraFirst= "Error, unconnected node detected reseting inputs";
+					JOptionPane pane = new JOptionPane(errorExtraFirst);
+					JDialog window = pane.createDialog("Error");
+					window.setSize(600,300);
+					window.show();
+					
+					p = new Path();
+					textField_4.setText("");
+					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
+					
+				}
                 ArrayList<Path> pathList;
                 pathList = pathM.MakePaths(joe);
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));

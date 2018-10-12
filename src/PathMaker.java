@@ -112,6 +112,16 @@ public class PathMaker {
 	}
 	public int findFirst(ArrayList<Node> n)
 	{
+		
+		int numOfFirst=0;
+		for(int i=0; i<n.size();i++)
+		{
+			if(n.get(i).hasDependencies()==false)
+				numOfFirst++;
+		}
+		if(numOfFirst>1) {
+			return 8888;
+		}
 		for(int i=0; i<n.size();i++)
 		{
 			if(n.get(i).hasDependencies()==false)
