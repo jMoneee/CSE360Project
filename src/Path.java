@@ -25,10 +25,6 @@ public class Path {
 	public int getDuration() {
 		return duration;
 	}
-	public void setActivities(ArrayList<Node> nodes)
-	{
-		for(int i=0; i<nodes.size(); i++)
-			addNode(nodes.get(i));
-	}
+	
 	
 }
