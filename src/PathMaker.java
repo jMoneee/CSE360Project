@@ -120,23 +120,6 @@ public class PathMaker {
 		
 		return 9999;
 	}
-	public ArrayList<Paths> sortPaths(ArrayList<Paths> input){
-		 
-		Path temp;
-		for (int i = 1; i < input.size(); i++) {
-            for(int j = i ; j > 0 ; j--){
-                if(input.get(j).getDuration() < input.get(j-1).getDuration()){
-                    temp = input.get(j);
-                    input.set(j, input.get(j-1));
-
-                    input.set(j-1, temp);
-                }
-            }
-        }
-
-		
-		return input;
-	}
 public String getName()
 {
 	return footName;
