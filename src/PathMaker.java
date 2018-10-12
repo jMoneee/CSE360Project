@@ -120,7 +120,7 @@ public class PathMaker {
 		
 		return 9999;
 	}
-	public ArrayList<Path> sortPaths(ArrayList<Path> input){
+	public ArrayList<Paths> sortPaths(ArrayList<Paths> input){
 		 
 		Path temp;
 		for (int i = 1; i < input.size(); i++) {
