@@ -142,10 +142,10 @@ public class PathMaker {
 			}
         return input;
 	}
-public String getName()
-{
-	return footName;
-}
+	public String getName()
+	{
+		return footName;
+	}
 	public Path copyPath(Path path) {
 		return path;
 	}
@@ -173,5 +173,16 @@ public String getName()
 		}
 		
 		paths.add(newPath);
+	}
+	public int findByName(ArrayList<Node> in, String _name) { 	//finds index of a node by name
+																//use this for duration changer
+																//do the changing of duration in main
+		for(int i=0; i<in.size();i++) {
+			if(in.get(i).getName().equals(_name)) {
+				return i;
+			}
+		}
+		
+		return 9999;
 	}
 }
