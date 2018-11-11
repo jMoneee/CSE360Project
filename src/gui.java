@@ -172,7 +172,7 @@ public class gui extends JFrame {
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
 				}
-				if(pathM.findFirst(joe)==8888) {
+				if(pathM.findUnconnected(joe)==1) {
 					String errorExtraFirst= "Error, unconnected node detected reseting inputs";
 					JOptionPane pane = new JOptionPane(errorExtraFirst);
 					JDialog window = pane.createDialog("Error");

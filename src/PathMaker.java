@@ -200,4 +200,16 @@ public class PathMaker {
 		
 		return critPaths;
 	}
+	public int findUnconnected(ArrayList<Node> nodes) {
+		
+		for(int i=0; i< nodes.size();i++) {
+			
+			ArrayList<Integer> dependencies = findDependencies(i, nodes);
+			if(!nodes.get(i).hasDependencies() && dependencies.size()==0) {
+				return 1;
+			}
+		}
+		
+		return 0;
+	}
 }
