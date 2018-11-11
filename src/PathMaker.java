@@ -185,4 +185,19 @@ public class PathMaker {
 		
 		return 9999;
 	}
+	public ArrayList<Path> findCriticalPaths(ArrayList<Path> paths) {
+		
+		ArrayList<Path> critPaths = new ArrayList<Path>();	
+		ArrayList<Path> pathsSorted = pathSort(paths);
+		
+		int critDuration = pathsSorted.get(0).getDuration();
+		
+		for(int i =0; i< pathsSorted.size(); i++) {
+			if(pathsSorted.get(i).getDuration()==critDuration) {
+				critPaths.add(pathsSorted.get(i));
+			}
+		}
+		
+		return critPaths;
+	}
 }
