@@ -124,8 +124,8 @@ public class gui extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
-							+ "The text from these fields is taken from these fields once the ‘Enter Activity’ button is pressed and used to create the activities in the list. "
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activityâ€™s name, duration and dependencies. \n"
+							+ "The text from these fields is taken from these fields once the â€˜Enter Activityâ€™ button is pressed and used to create the activities in the list. "
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
 							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
 							"\n" + 
@@ -172,7 +172,9 @@ public class gui extends JFrame {
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
 				}
+
 				if(pathM.findUnconnected(joe)==1) {
+
 					String errorExtraFirst= "Error, unconnected node detected reseting inputs";
 					JOptionPane pane = new JOptionPane(errorExtraFirst);
 					JDialog window = pane.createDialog("Error");
@@ -189,7 +191,7 @@ public class gui extends JFrame {
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 output ="Output Path(s): \n";
                 pathList = pathM.pathSort(pathList);
-                //System.out.println("path size"+pathList.size());
+                System.out.println("path size"+pathList.size());
                 for(int i=0; i<pathList.size();i++)
                 {
                 	for(int j=0; j<pathList.get(i).getActivities().size();j++)
@@ -280,7 +282,9 @@ public class gui extends JFrame {
 					textField_2.setText("");
 				}
 				else {
-				System.out.println("node created");
+
+			//	System.out.println("node created");
+
 				ArrayList<String> depen = new ArrayList<String>();
 				if(textField_2.getText().equals(""))
 				{
@@ -293,7 +297,7 @@ public class gui extends JFrame {
 				}
 				
 				Node n = new Node(Integer.parseInt(textField_1.getText()), textField.getText(), depen);
-				System.out.println("depends" +n.hasDependencies());
+				//System.out.println("depends" +n.hasDependencies());
 				p.addNode(n);
 				PathMaker m = new PathMaker();
 				String names="",input=textField_3.getText();
