@@ -97,24 +97,9 @@ public class gui extends JFrame {
 					JDialog window = pane.createDialog("About ");
 					window.setSize(600,300);
 					window.show();
+
 					
-			/*		PathMaker pathM = new PathMaker();
-	                ArrayList<Path> pathList;
-	                pathList = pathM.MakePaths(joe);
-	                
-	                pathList = pathM.pathSort(pathList);
-	                //System.out.println("path size"+pathList.size());
-	                String output="";
-	                for(int i=0; i<pathList.size();i++)
-	                {
-	                	for(int j=0; j<pathList.get(i).getActivities().size();j++)
-	                	{
-	                		output+=pathList.get(i).getActivities().get(j).getName();
-	                	}
-	                	output+=" "+pathList.get(i).getDuration();
-	                	output+="\n";
-	                }
-	                textField_4.setText(output);*/
+
 			}
 		});
 
@@ -124,8 +109,10 @@ public class gui extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
-							+ "The text from these fields is taken from these fields once the ‘Enter Activity’ button is pressed and used to create the activities in the list. "
+
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity�s name, duration and dependencies. \n"
+
+
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
 							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
 							"\n" + 
@@ -173,7 +160,9 @@ public class gui extends JFrame {
 					
 				}
 
+
 				if(pathM.findUnconnected(joe)==1) {
+
 
 					String errorExtraFirst= "Error, unconnected node detected reseting inputs";
 					JOptionPane pane = new JOptionPane(errorExtraFirst);
@@ -191,7 +180,9 @@ public class gui extends JFrame {
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 output ="Output Path(s): \n";
                 pathList = pathM.pathSort(pathList);
-                System.out.println("path size"+pathList.size());
+
+                //System.out.println("path size"+pathList.size());
+
                 for(int i=0; i<pathList.size();i++)
                 {
                 	for(int j=0; j<pathList.get(i).getActivities().size();j++)
@@ -267,6 +258,75 @@ public class gui extends JFrame {
 		panel_1.add(btnEnterActivity);
 
 	
+
+		
+		btnEnterActivity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!textField_1.getText().matches(".*\\d+.*")) {
+					String errorInt= "Error, non-integer detected for node duration. Reseting inputs";
+					JOptionPane pane = new JOptionPane(errorInt);
+					JDialog window = pane.createDialog("Error");
+					window.setSize(600,300);
+					window.show();
+					
+					textField.setText("");
+					textField_1.setText("");
+					textField_2.setText("");
+				}
+				else {
+				System.out.println("node created");
+				ArrayList<String> depen = new ArrayList<String>();
+				if(textField_2.getText().equals(""))
+				{
+					
+				}
+				else
+				{
+				for(int i=0; i<textField_2.getText().length();i++)
+					depen.add(textField_2.getText().substring(i, i+1));
+				}
+				
+				Node n = new Node(Integer.parseInt(textField_1.getText()), textField.getText(), depen);
+				System.out.println("depends" +n.hasDependencies());
+				p.addNode(n);
+				PathMaker m = new PathMaker();
+				String names="",input=textField_3.getText();
+				joe = p.getActivities();
+				for(int i=0; i<joe.size();i++)
+					names+=joe.get(i).getName();
+
+                         	
+				
+                	
+
+               
+               
+             //  System.out.println(m.findFirst(joe));
+              // System.out.println(m.findDependencies(m.findFirst(joe),joe));
+                Path temp;
+               /* for (int i = 1; i < pathList.size(); i++) {
+                    for(int j = i ; j > 0 ; j--){
+                        if(pathList.get(j).getDuration() < pathList.get(j-1).getDuration()){
+                            temp = pathList.get(j);
+                            pathList.set(j, pathList.get(j-1));
+
+                            pathList.set(j-1, temp);
+                        }
+                    }
+                }*/
+				
+				
+				input+=n.getName()+"\t\t\t"+n.printDependencies()+" \t\t\t"+n.getSize()+"\n";
+				textField_3.setText(input);
+				//textField_4.setText(names);
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				}
+			}
+		});
+		
+
 		
 		btnEnterActivity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -336,11 +396,13 @@ public class gui extends JFrame {
 			}
 		});
 		
+
 		textField_3 = new JTextArea();
 		textField_3.setBounds(10, 166, 669, 302);
 		panel_1.add(textField_3);
 		textField_3.setColumns(10);
 		
+
 		JButton btnCreateNetworkPath = new JButton("Create Network Path");
 		btnCreateNetworkPath.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -349,6 +411,7 @@ public class gui extends JFrame {
 		btnCreateNetworkPath.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnCreateNetworkPath.setBounds(276, 472, 364, 96);
 		panel_1.add(btnCreateNetworkPath);
+
 		
 		textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 		
@@ -357,13 +420,56 @@ public class gui extends JFrame {
 		
 		panel_2.setLayout(null);
 
-		textField_4 = new JTextArea("Output paths: \n");
+
+		textField_4 = new JTextArea("");
 	    textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField_4.setBounds(21, 44, 658, 349);
+		textField_4.setBounds(21, 44, 286, 303);
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
-		JLabel lblOutputPaths = new JLabel("Output Paths");
-		lblOutputPaths.setBounds(312, 0, 172, 26);
+		JLabel lblOutputPaths = new JLabel("Path List");
+		lblOutputPaths.setBounds(21, 0, 172, 26);
+
 		panel_2.add(lblOutputPaths);
+		
+		JButton btnCreateReport = new JButton("Create Report");
+		btnCreateReport.setBounds(21, 358, 187, 35);
+		panel_2.add(btnCreateReport);
+		btnCreateReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CreateReport report= new CreateReport();
+				report.setVisible(true);
+			}
+		});
+		
+		JTextArea textArea = new JTextArea("");
+		textArea.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textArea.setColumns(10);
+		textArea.setBounds(354, 44, 307, 303);
+		panel_2.add(textArea);
+		
+		JLabel label_1 = new JLabel("Critical Path");
+		label_1.setBounds(359, 0, 172, 26);
+		panel_2.add(label_1);
+		
+		JButton btnGenerate = new JButton("Generate");
+		btnGenerate.setBounds(499, 0, 141, 35);
+		panel_2.add(btnGenerate);
+		btnGenerate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				dispose();			//closes window
+			}
+		});
+		
+		JButton btnChangeNodeDuration = new JButton("Change Node Duration");
+		btnChangeNodeDuration.setBounds(354, 358, 196, 35);
+		panel_2.add(btnChangeNodeDuration);
+		btnChangeNodeDuration.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ChangeNodeDuration chgn= new ChangeNodeDuration();
+				chgn.setVisible(true);
+				dispose();			//closes window
+			}
+		});
 	}
 }
