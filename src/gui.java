@@ -160,12 +160,36 @@ public class gui extends JFrame {
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PathMaker pathM = new PathMaker();
+				if(pathM.findFirst(joe)==9999) {
+					String errorCycle= "Error, Cycle detected reseting inputs";
+					JOptionPane pane = new JOptionPane(errorCycle);
+					JDialog window = pane.createDialog("Error");
+					window.setSize(600,300);
+					window.show();
+					
+					p = new Path();
+					textField_4.setText("");
+					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
+					
+				}
+				if(pathM.findFirst(joe)==8888) {
+					String errorExtraFirst= "Error, unconnected node detected reseting inputs";
+					JOptionPane pane = new JOptionPane(errorExtraFirst);
+					JDialog window = pane.createDialog("Error");
+					window.setSize(600,300);
+					window.show();
+					
+					p = new Path();
+					textField_4.setText("");
+					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
+					
+				}
                 ArrayList<Path> pathList;
                 pathList = pathM.MakePaths(joe);
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 output ="Output Path(s): \n";
                 pathList = pathM.pathSort(pathList);
-                //System.out.println("path size"+pathList.size());
+                System.out.println("path size"+pathList.size());
                 for(int i=0; i<pathList.size();i++)
                 {
                 	for(int j=0; j<pathList.get(i).getActivities().size();j++)
@@ -244,7 +268,19 @@ public class gui extends JFrame {
 		
 		btnEnterActivity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("node created");
+				if(!textField_1.getText().matches(".*\\d+.*")) {
+					String errorInt= "Error, non-integer detected for node duration. Reseting inputs";
+					JOptionPane pane = new JOptionPane(errorInt);
+					JDialog window = pane.createDialog("Error");
+					window.setSize(600,300);
+					window.show();
+					
+					textField.setText("");
+					textField_1.setText("");
+					textField_2.setText("");
+				}
+				else {
+			//	System.out.println("node created");
 				ArrayList<String> depen = new ArrayList<String>();
 				if(textField_2.getText().equals(""))
 				{
@@ -255,8 +291,9 @@ public class gui extends JFrame {
 				for(int i=0; i<textField_2.getText().length();i++)
 					depen.add(textField_2.getText().substring(i, i+1));
 				}
+				
 				Node n = new Node(Integer.parseInt(textField_1.getText()), textField.getText(), depen);
-				System.out.println("depends" +n.hasDependencies());
+				//System.out.println("depends" +n.hasDependencies());
 				p.addNode(n);
 				PathMaker m = new PathMaker();
 				String names="",input=textField_3.getText();
@@ -291,6 +328,7 @@ public class gui extends JFrame {
 				textField.setText("");
 				textField_1.setText("");
 				textField_2.setText("");
+				}
 			}
 		});
 		
