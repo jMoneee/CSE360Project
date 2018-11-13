@@ -295,26 +295,6 @@ public class gui extends JFrame {
 				for(int i=0; i<joe.size();i++)
 					names+=joe.get(i).getName();
 
-                         	
-				
-                	
-
-               
-               
-             //  System.out.println(m.findFirst(joe));
-              // System.out.println(m.findDependencies(m.findFirst(joe),joe));
-                Path temp;
-               /* for (int i = 1; i < pathList.size(); i++) {
-                    for(int j = i ; j > 0 ; j--){
-                        if(pathList.get(j).getDuration() < pathList.get(j-1).getDuration()){
-                            temp = pathList.get(j);
-                            pathList.set(j, pathList.get(j-1));
-
-                            pathList.set(j-1, temp);
-                        }
-                    }
-                }*/
-				
 				
 				input+=n.getName()+"\t\t\t"+n.printDependencies()+" \t\t\t"+n.getSize()+"\n";
 				textField_3.setText(input);
@@ -342,8 +322,6 @@ public class gui extends JFrame {
 					textField_2.setText("");
 				}
 				else {
-
-			//	System.out.println("node created");
 
 				ArrayList<String> depen = new ArrayList<String>();
 				if(textField_2.getText().equals(""))
@@ -431,13 +409,26 @@ public class gui extends JFrame {
 
 		panel_2.add(lblOutputPaths);
 		
-		JButton btnCreateReport = new JButton("Create Report");
+		JButton btnCreateReport = new JButton("Create Report: ");
 		btnCreateReport.setBounds(21, 358, 187, 35);
 		panel_2.add(btnCreateReport);
+		JLabel reportLb= new JLabel("<html> Report Name:</html>");
+		JTextField reportTf= new JTextField();
+		JButton reportBtn= new JButton("Create Report");
 		btnCreateReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CreateReport report= new CreateReport();
-				report.setVisible(true);
+				
+				JPanel pane = new JPanel();
+				pane.setLayout(new GridLayout(4,1));
+				pane.add(reportLb);
+				pane.add(reportTf);
+				pane.add(reportBtn);
+				
+				JFrame window = new JFrame("Create Report");
+				window.setSize(1000,300);
+				window.add(pane);
+				window.show();
+				
 			}
 		});
 		
@@ -456,19 +447,36 @@ public class gui extends JFrame {
 		panel_2.add(btnGenerate);
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				dispose();			//closes window
+
 			}
 		});
 		
 		JButton btnChangeNodeDuration = new JButton("Change Node Duration");
 		btnChangeNodeDuration.setBounds(354, 358, 196, 35);
 		panel_2.add(btnChangeNodeDuration);
+		
+		JLabel toChange = new JLabel("<html> Node To Change:</html>");
+		JTextField toChangeTf= new JTextField();
+		JLabel newDur= new JLabel("<html> New Duration:</html>");
+		JTextField newDurTf= new JTextField();
+		JButton newDurBtn= new JButton("Enter");
+		
 		btnChangeNodeDuration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ChangeNodeDuration chgn= new ChangeNodeDuration();
-				chgn.setVisible(true);
-				dispose();			//closes window
+				
+				JPanel pane = new JPanel();
+				pane.setLayout(new GridLayout(4,1));
+				pane.add(toChange);
+				pane.add(toChangeTf);
+				pane.add(newDur);
+				pane.add(newDurTf);
+				pane.add(newDurBtn);
+				
+				JFrame window = new JFrame("Change Node Duration");
+				window.setSize(1000,300);
+				window.add(pane);
+				window.show();
+				
 			}
 		});
 	}
