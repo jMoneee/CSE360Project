@@ -30,7 +30,7 @@ public class Node
 	public void setName(String newName){
 		name = newName;
 	}
-
+	
 	public int getSize(){
 		return size;
 	}

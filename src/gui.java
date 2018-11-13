@@ -124,8 +124,8 @@ public class gui extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activityâ€™s name, duration and dependencies. \n"
-							+ "The text from these fields is taken from these fields once the â€˜Enter Activityâ€™ button is pressed and used to create the activities in the list. "
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
+							+ "The text from these fields is taken from these fields once the ‘Enter Activity’ button is pressed and used to create the activities in the list. "
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
 							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
 							"\n" + 
@@ -172,9 +172,7 @@ public class gui extends JFrame {
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
 				}
-
-				if(pathM.findUnconnected(joe)==1) {
-
+				if(pathM.findFirst(joe)==8888) {
 					String errorExtraFirst= "Error, unconnected node detected reseting inputs";
 					JOptionPane pane = new JOptionPane(errorExtraFirst);
 					JDialog window = pane.createDialog("Error");
@@ -282,9 +280,7 @@ public class gui extends JFrame {
 					textField_2.setText("");
 				}
 				else {
-
 			//	System.out.println("node created");
-
 				ArrayList<String> depen = new ArrayList<String>();
 				if(textField_2.getText().equals(""))
 				{
