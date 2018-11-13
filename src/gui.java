@@ -97,27 +97,9 @@ public class gui extends JFrame {
 					JDialog window = pane.createDialog("About ");
 					window.setSize(600,300);
 					window.show();
-<<<<<<< HEAD
-=======
+
 					
-			/*		PathMaker pathM = new PathMaker();
-	                ArrayList<Path> pathList;
-	                pathList = pathM.MakePaths(joe);
-	                
-	                pathList = pathM.pathSort(pathList);
-	                //System.out.println("path size"+pathList.size());
-	                String output="";
-	                for(int i=0; i<pathList.size();i++)
-	                {
-	                	for(int j=0; j<pathList.get(i).getActivities().size();j++)
-	                	{
-	                		output+=pathList.get(i).getActivities().get(j).getName();
-	                	}
-	                	output+=" "+pathList.get(i).getDuration();
-	                	output+="\n";
-	                }
-	                textField_4.setText(output);*/
->>>>>>> master
+
 			}
 		});
 
@@ -127,13 +109,10 @@ public class gui extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					
-<<<<<<< HEAD
+
 					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
-							+ "The text from these fields is taken from these fields once the ‘Enter Activity’ button is pressed and used to create the activities in the list. "
-=======
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activityâ€™s name, duration and dependencies. \n"
-							+ "The text from these fields is taken from these fields once the â€˜Enter Activityâ€™ button is pressed and used to create the activities in the list. "
->>>>>>> master
+
+
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
 							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
 							"\n" + 
@@ -180,13 +159,11 @@ public class gui extends JFrame {
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
 				}
-<<<<<<< HEAD
-				if(pathM.findFirst(joe)==8888) {
-=======
+
 
 				if(pathM.findUnconnected(joe)==1) {
 
->>>>>>> master
+
 					String errorExtraFirst= "Error, unconnected node detected reseting inputs";
 					JOptionPane pane = new JOptionPane(errorExtraFirst);
 					JDialog window = pane.createDialog("Error");
@@ -203,11 +180,9 @@ public class gui extends JFrame {
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 output ="Output Path(s): \n";
                 pathList = pathM.pathSort(pathList);
-<<<<<<< HEAD
+
                 //System.out.println("path size"+pathList.size());
-=======
-                System.out.println("path size"+pathList.size());
->>>>>>> master
+
                 for(int i=0; i<pathList.size();i++)
                 {
                 	for(int j=0; j<pathList.get(i).getActivities().size();j++)
@@ -283,7 +258,7 @@ public class gui extends JFrame {
 		panel_1.add(btnEnterActivity);
 
 	
-<<<<<<< HEAD
+
 		
 		btnEnterActivity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -351,7 +326,7 @@ public class gui extends JFrame {
 			}
 		});
 		
-=======
+
 		
 		btnEnterActivity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -421,14 +396,13 @@ public class gui extends JFrame {
 			}
 		});
 		
->>>>>>> master
+
 		textField_3 = new JTextArea();
 		textField_3.setBounds(10, 166, 669, 302);
 		panel_1.add(textField_3);
 		textField_3.setColumns(10);
 		
-<<<<<<< HEAD
-=======
+
 		JButton btnCreateNetworkPath = new JButton("Create Network Path");
 		btnCreateNetworkPath.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -437,7 +411,7 @@ public class gui extends JFrame {
 		btnCreateNetworkPath.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnCreateNetworkPath.setBounds(276, 472, 364, 96);
 		panel_1.add(btnCreateNetworkPath);
->>>>>>> master
+
 		
 		textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 		
@@ -446,7 +420,7 @@ public class gui extends JFrame {
 		
 		panel_2.setLayout(null);
 
-<<<<<<< HEAD
+
 		textField_4 = new JTextArea("");
 	    textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textField_4.setBounds(21, 44, 286, 303);
@@ -454,15 +428,7 @@ public class gui extends JFrame {
 		textField_4.setColumns(10);
 		JLabel lblOutputPaths = new JLabel("Path List");
 		lblOutputPaths.setBounds(21, 0, 172, 26);
-=======
-		textField_4 = new JTextArea("Output paths: \n");
-	    textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField_4.setBounds(21, 44, 658, 349);
-		panel_2.add(textField_4);
-		textField_4.setColumns(10);
-		JLabel lblOutputPaths = new JLabel("Output Paths");
-		lblOutputPaths.setBounds(312, 0, 172, 26);
->>>>>>> master
+
 		panel_2.add(lblOutputPaths);
 		
 		JButton btnCreateReport = new JButton("Create Report");
