@@ -325,4 +325,43 @@ public String getName()
 		
 		paths.add(newPath);
 	}
+
+	public int findByName(ArrayList<Node> in, String _name) { 	//finds index of a node by name
+																//use this for duration changer
+																//do the changing of duration in main
+		for(int i=0; i<in.size();i++) {
+			if(in.get(i).getName().equals(_name)) {
+				return i;
+			}
+		}
+		
+		return 9999;
+	}
+	public ArrayList<Path> findCriticalPaths(ArrayList<Path> paths) {
+		
+		ArrayList<Path> critPaths = new ArrayList<Path>();	
+		ArrayList<Path> pathsSorted = pathSort(paths);
+		
+		int critDuration = pathsSorted.get(0).getDuration();
+		
+		for(int i =0; i< pathsSorted.size(); i++) {
+			if(pathsSorted.get(i).getDuration()==critDuration) {
+				critPaths.add(pathsSorted.get(i));
+			}
+		}
+		
+		return critPaths;
+	}
+	public int findUnconnected(ArrayList<Node> nodes) {
+		
+		for(int i=0; i< nodes.size();i++) {
+			
+			ArrayList<Integer> dependencies = findDependencies(i, nodes);
+			if(!nodes.get(i).hasDependencies() && dependencies.size()==0) {
+				return 1;
+			}
+		}
+		
+		return 0;
+	}
 }
