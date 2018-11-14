@@ -447,7 +447,7 @@ public class gui extends JFrame {
 		panel_2.add(btnGenerate);
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+					//put crit path stuff here
 			}
 		});
 		
@@ -476,6 +476,13 @@ public class gui extends JFrame {
 				window.setSize(1000,300);
 				window.add(pane);
 				window.show();
+				
+			}
+		});
+		newDurBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			//put duration change here
 				
 			}
 		});
