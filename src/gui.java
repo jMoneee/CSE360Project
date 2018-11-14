@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -117,7 +118,7 @@ public class gui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 					
 
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activityâ€™s name, duration and dependencies. \n"
 
 
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
@@ -154,6 +155,7 @@ public class gui extends JFrame {
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				output = "";
+				PathMaker pathM = new PathMaker();
 				if(pathM.findFirst(joe)==9999) {
 					String errorCycle= "Error, Cycle detected reseting inputs";
 					JOptionPane pane = new JOptionPane(errorCycle);
@@ -181,8 +183,7 @@ public class gui extends JFrame {
 					textField_4.setText("");
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
-				}*/
-                
+				}*/ 
                 pathList = pathM.MakePaths(joe);
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 output ="Output Path(s): \n";
@@ -199,8 +200,9 @@ public class gui extends JFrame {
                 	output+=" "+pathList.get(i).getDuration();
                 	output+="\n";
                 }
-                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 50));
+                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 textField_4.setText(output);
+           
 			}
 		});
 		
@@ -497,7 +499,7 @@ public class gui extends JFrame {
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
 				}
-                
+				pathM  = new PathMaker();
                 pathList = pathM.MakePaths(joe);
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 output ="Output Path(s): \n";
@@ -514,8 +516,9 @@ public class gui extends JFrame {
                 	output+=" "+pathList.get(i).getDuration();
                 	output+="\n";
                 }
-                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 50));
+                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 textField_4.setText(output);
+                pathM  = new PathMaker();
 			}
 		
 			
