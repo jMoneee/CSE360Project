@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -117,7 +118,7 @@ public class gui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 					
 
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activityâ€™s name, duration and dependencies. \n"
 
 
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
