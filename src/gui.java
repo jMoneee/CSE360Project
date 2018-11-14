@@ -50,6 +50,8 @@ public class gui extends JFrame {
 	ArrayList <String> dependencyList = new ArrayList<String>();
 	ArrayList<Node> joe;
     String output;
+    ArrayList<Path> pathList;
+    PathMaker pathM = new PathMaker();
 	/**
 	 * Launch the application.
 	 */
@@ -88,7 +90,7 @@ public class gui extends JFrame {
 		btnAbout.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
 					
-		String about= "The purpose of the program is to analyse an inputed set of nodes of a network diagram and determine all the paths as well as information about said paths. \r\n" + 
+		String about= "The purpose of the program is to analyse an inputed set of nodes of a network diagram \n and determine all the paths as well as information about said paths. \r\n" + 
 				"\r\n" + 
 				"This project was created by the following people:\n" + 
 				"\n" + 
@@ -115,14 +117,13 @@ public class gui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 					
 
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
-
-
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity's name, duration and dependencies. \n"
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
-							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
+							+ "\nThe path list will be displayed on the Output tab and is updated every time the process button is pressed." + 
 							"\n" + 
-							"The Output tab will only have one field which will display the list of paths and all needed information about the paths. The output tab will be update every time a new node is added.\r\n" + 
-							"";
+							"The output tab will have 2 fields, one for the list of paths and one for the list of nodes in the  \n" + 
+							"critical path. The output tab will also have 3 buttons, one for report creation, one to find the critical path and one to change \n" + 
+							"the duration of a node. \n";
 					
 					JOptionPane pane = new JOptionPane(helpBut);
 					JDialog window = pane.createDialog("Help");
@@ -151,6 +152,7 @@ public class gui extends JFrame {
 
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				output = "";
 				PathMaker pathM = new PathMaker();
 				if(pathM.findFirst(joe)==9999) {
 					String errorCycle= "Error, Cycle detected reseting inputs";
@@ -166,7 +168,7 @@ public class gui extends JFrame {
 				}
 
 
-				/*if(pathM.findUnconnected(joe)==1) {
+				if(pathM.findUnconnected(joe)==1) {
 
 
 					String errorExtraFirst= "Error, unconnected node detected reseting inputs";
@@ -179,8 +181,7 @@ public class gui extends JFrame {
 					textField_4.setText("");
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
-				}*/
-                ArrayList<Path> pathList;
+				}
                 pathList = pathM.MakePaths(joe);
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 output ="Output Path(s): \n";
@@ -197,8 +198,9 @@ public class gui extends JFrame {
                 	output+=" "+pathList.get(i).getDuration();
                 	output+="\n";
                 }
-                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 50));
+                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 textField_4.setText(output);
+           
 			}
 		});
 		
@@ -371,11 +373,10 @@ public class gui extends JFrame {
 						
 						String reportName= reportTf.getText()+".txt";
 						Calendar c = Calendar.getInstance();
-						ArrayList<Path> pathList;
-						Path path=new Path();
+						PathMaker pathM=new PathMaker();
 						joe=p.getActivities();
-						PathMaker m = new PathMaker();
-						
+						pathList = pathM.MakePaths(joe);
+						pathList = pathM.pathSort(pathList);
 						
 						try {
 							
@@ -386,16 +387,21 @@ public class gui extends JFrame {
 							file.println("All Activities");
 							for(int i=0;i<joe.size();i++)
 							{
-								file.println(joe.get(i).getName()+" ");
+								file.println(joe.get(i).getName()+" "+joe.get(i).getSize());
 							}
 							
 							file.println();
 							
 							file.println("All Paths and Total Duration:");
-							for(int i=0;i<m.numOfPaths;i++)
+							for(int i=0;i<pathList.size();i++)
 							{
-								file.print(m.MakePaths(joe));
+								for(int j=0;j<pathList.get(i).getActivities().size();j++)
+								{
+									file.print(pathList.get(i).getActivities().get(j).getName());
+								}
+								file.println();
 							}
+							
 							file.println();
 							file.print("Total Duration: "+p.getDuration());
 							
@@ -403,7 +409,6 @@ public class gui extends JFrame {
 						} catch(IOException e) {
 							e.printStackTrace();
 						}
-				
 						
 						window.dispose();					//closes changeNode jFrame
 					}
@@ -426,7 +431,20 @@ public class gui extends JFrame {
 		panel_2.add(btnGenerate);
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+					//put crit path stuff here
+				String outputCrit = "Critical Path(s): \n";
+				ArrayList<Path> critPaths = pathM.findCriticalPaths(pathList);
+				for(int i=0; i<critPaths.size();i++)
+                {
+                	for(int j=0; j<critPaths.get(i).getActivities().size();j++)
+                	{
+                		outputCrit+=critPaths.get(i).getActivities().get(j).getName();
+                	}
+                	outputCrit+=" "+critPaths.get(i).getDuration();
+                	outputCrit+="\n";
+                }
+				textArea.setText(outputCrit);
+				
 			}
 		});
 		
@@ -461,6 +479,50 @@ public class gui extends JFrame {
 					}
 				});
 			}
+		});
+		newDurBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				output = "";
+			//put duration change here
+				int indexOf = pathM.findByName(joe, toChangeTf.getText());
+				Node temp = joe.get(indexOf);
+				temp.setSize(Integer.parseInt(newDurTf.getText()));
+				joe.set(indexOf, temp);
+				if(pathM.findFirst(joe)==9999) {
+					String errorCycle= "Error, Cycle detected reseting inputs";
+					JOptionPane pane = new JOptionPane(errorCycle);
+					JDialog window = pane.createDialog("Error");
+					window.setSize(600,300);
+					window.show();
+					
+					p = new Path();
+					textField_4.setText("");
+					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
+					
+				}
+				pathM  = new PathMaker();
+                pathList = pathM.MakePaths(joe);
+                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+                output ="Output Path(s): \n";
+                pathList = pathM.pathSort(pathList);
+
+                //System.out.println("path size"+pathList.size());
+
+                for(int i=0; i<pathList.size();i++)
+                {
+                	for(int j=0; j<pathList.get(i).getActivities().size();j++)
+                	{
+                		output+=pathList.get(i).getActivities().get(j).getName();
+                	}
+                	output+=" "+pathList.get(i).getDuration();
+                	output+="\n";
+                }
+                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+                textField_4.setText(output);
+                pathM  = new PathMaker();
+			}
+		
+			
 		});
 	}
 }
