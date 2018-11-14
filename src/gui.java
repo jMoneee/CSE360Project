@@ -50,6 +50,8 @@ public class gui extends JFrame {
 	ArrayList <String> dependencyList = new ArrayList<String>();
 	ArrayList<Node> joe;
     String output;
+    ArrayList<Path> pathList;
+    PathMaker pathM = new PathMaker();
 	/**
 	 * Launch the application.
 	 */
@@ -151,7 +153,7 @@ public class gui extends JFrame {
 
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PathMaker pathM = new PathMaker();
+				
 				if(pathM.findFirst(joe)==9999) {
 					String errorCycle= "Error, Cycle detected reseting inputs";
 					JOptionPane pane = new JOptionPane(errorCycle);
@@ -180,7 +182,7 @@ public class gui extends JFrame {
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
 				}*/
-                ArrayList<Path> pathList;
+                
                 pathList = pathM.MakePaths(joe);
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 output ="Output Path(s): \n";
@@ -426,7 +428,20 @@ public class gui extends JFrame {
 		panel_2.add(btnGenerate);
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+					//put crit path stuff here
+				String outputCrit = "";
+				ArrayList<Path> critPaths = pathM.findCriticalPaths(pathList);
+				for(int i=0; i<critPaths.size();i++)
+                {
+                	for(int j=0; j<critPaths.get(i).getActivities().size();j++)
+                	{
+                		outputCrit+=critPaths.get(i).getActivities().get(j).getName();
+                	}
+                	outputCrit+=" "+critPaths.get(i).getDuration();
+                	outputCrit+="\n";
+                }
+				textArea.setText(outputCrit);
+				
 			}
 		});
 		
@@ -460,6 +475,13 @@ public class gui extends JFrame {
 						window.dispose();					//closes changeNode jFrame
 					}
 				});
+			}
+		});
+		newDurBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			//put duration change here
+				
 			}
 		});
 	}
