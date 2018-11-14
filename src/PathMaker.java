@@ -30,7 +30,28 @@ public class PathMaker {
 			//foundDepens = findDependencies(current, nodes);
 			//System.out.println("dependencies" +foundDepens);
 			output="";
-			if(foundDepens.size()>1)
+			if(foundDepens.size()>2)
+			{
+				int i=1;
+				while(i<foundDepens.size())
+				{
+					tempPath.setActivities(currentPath.getActivities());
+					System.out.println("activities "+tempPath.getActivities().size()+"\n");
+					tempPath = MakeTempPath(nodes, tempPath,i);
+					paths.add(tempPath);
+	            	for(int j=0; j<tempPath.getActivities().size();j++)
+	            	{
+	            		output+=tempPath.getActivities().get(j).getName();
+	            	}
+	            	System.out.println(output);
+	            	output="";
+	            	tempPath = new Path();
+					i++;
+					
+					
+				}
+			}
+			else if(foundDepens.size()>1)
 			{
 				tempPath.setActivities(currentPath.getActivities());
 				System.out.println("activities "+tempPath.getActivities().size()+"\n");
@@ -144,6 +165,65 @@ public class PathMaker {
     	//}
 		return temp;
 	}
+	public Path MakeTempPath(ArrayList<Node> nodes, Path temp, int k)
+	{
+		ArrayList<Integer> foundDepens1;
+		//System.out.println("temp array "+temp.getActivities().size());
+		boolean isDone=false;
+
+		int current1 = temp.getActivities().size()-1;
+		//if(temp.getActivities().size()==1)
+		//{
+		for(int i=0; i<nodes.size(); i++)
+		{
+			if(nodes.get(i).getName().equals(temp.getActivities().get(current1).getName()))
+			{
+				current1 = i;
+				i=nodes.size();
+			}
+		}
+		//}
+		System.out.println("activities "+temp.getActivities().get(0).getName()+"\n");
+	//	System.out.println(current1);
+	
+		while(isDone==false)
+		{
+			foundDepens1 = findDependencies(current1, nodes);
+			System.out.println(nodes.get(current1).getName()+" has "+foundDepens1+" as depedencies\n");
+			
+			if(foundDepens1.size()==1)
+			{
+				temp.addNode(nodes.get(foundDepens1.get(0)));
+				current1 = foundDepens1.get(0);
+			}
+			else if(foundDepens1.size()>2)
+			{
+				temp.addNode(nodes.get(foundDepens1.get(k)));
+				current1 = foundDepens1.get(k);
+			}
+			else if(foundDepens1.size()>1)
+			{
+				temp.addNode(nodes.get(foundDepens1.get(1)));
+				current1 = foundDepens1.get(1);
+			}
+			
+			//System.out.println("adding "+nodes.get(foundDepens1.get(1)).getName());
+			//System.out.println("1 " +foundDepens1);
+			foundDepens1 = findDependencies(current1, nodes);
+			if(foundDepens1.isEmpty())
+			{
+				isDone=true;
+				//System.out.println("true");
+		
+			}
+				
+		}
+		//for(int j=0; j<temp.getActivities().size();j++)
+    	//{
+    	//	System.out.println(temp.getActivities().get(j).getName());
+    	//}
+		return temp;
+	}
 	public ArrayList<Integer> findDependencies(int current,ArrayList<Node> nodes)
 	{
 		ArrayList<Integer> dependencies = new ArrayList<Integer>();
@@ -171,9 +251,9 @@ public class PathMaker {
 			if(n.get(i).hasDependencies()==false)
 				numOfFirst++;
 		}
-		if(numOfFirst>1) {
+		/*if(numOfFirst>1) {
 			return 8888;
-		}
+		}*/
 		for(int i=0; i<n.size();i++)
 		{
 			if(n.get(i).hasDependencies()==false)
@@ -213,10 +293,10 @@ public class PathMaker {
 			}
         return input;
 	}
-	public String getName()
-	{
-		return footName;
-	}
+public String getName()
+{
+	return footName;
+}
 	public Path copyPath(Path path) {
 		return path;
 	}
@@ -245,6 +325,7 @@ public class PathMaker {
 		
 		paths.add(newPath);
 	}
+
 	public int findByName(ArrayList<Node> in, String _name) { 	//finds index of a node by name
 																//use this for duration changer
 																//do the changing of duration in main
