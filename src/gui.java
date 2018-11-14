@@ -153,7 +153,7 @@ public class gui extends JFrame {
 
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				output = "";
 				if(pathM.findFirst(joe)==9999) {
 					String errorCycle= "Error, Cycle detected reseting inputs";
 					JOptionPane pane = new JOptionPane(errorCycle);
@@ -479,10 +479,46 @@ public class gui extends JFrame {
 		});
 		newDurBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				output = "";
 			//put duration change here
-				
+				int indexOf = pathM.findByName(joe, toChangeTf.getText());
+				Node temp = joe.get(indexOf);
+				temp.setSize(Integer.parseInt(newDurTf.getText()));
+				joe.set(indexOf, temp);
+				if(pathM.findFirst(joe)==9999) {
+					String errorCycle= "Error, Cycle detected reseting inputs";
+					JOptionPane pane = new JOptionPane(errorCycle);
+					JDialog window = pane.createDialog("Error");
+					window.setSize(600,300);
+					window.show();
+					
+					p = new Path();
+					textField_4.setText("");
+					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
+					
+				}
+                
+                pathList = pathM.MakePaths(joe);
+                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+                output ="Output Path(s): \n";
+                pathList = pathM.pathSort(pathList);
+
+                //System.out.println("path size"+pathList.size());
+
+                for(int i=0; i<pathList.size();i++)
+                {
+                	for(int j=0; j<pathList.get(i).getActivities().size();j++)
+                	{
+                		output+=pathList.get(i).getActivities().get(j).getName();
+                	}
+                	output+=" "+pathList.get(i).getDuration();
+                	output+="\n";
+                }
+                textField_4.setFont(new Font("Tahoma", Font.PLAIN, 50));
+                textField_4.setText(output);
 			}
+		
+			
 		});
 	}
 }
