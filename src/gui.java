@@ -91,7 +91,7 @@ public class gui extends JFrame {
 		btnAbout.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
 					
-		String about= "The purpose of the program is to analyse an inputed set of nodes of a network diagram and determine all the paths as well as information about said paths. \r\n" + 
+		String about= "The purpose of the program is to analyse an inputed set of nodes of a network diagram \n and determine all the paths as well as information about said paths. \r\n" + 
 				"\r\n" + 
 				"This project was created by the following people:\n" + 
 				"\n" + 
@@ -118,14 +118,13 @@ public class gui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 					
 
-					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity’s name, duration and dependencies. \n"
-
-
+					String helpBut ="The input tab contains 3 text input fields for inputting activites, one for an activity's name, duration and dependencies. \n"
 							+ "\nAs activities are entered they will appear in the field below it, which is a list of all entered activities. "
-							+ "\nThe path list will be displayed on the Output tab and is updated every time a new node is entered." + 
+							+ "\nThe path list will be displayed on the Output tab and is updated every time the process button is pressed." + 
 							"\n" + 
-							"The Output tab will only have one field which will display the list of paths and all needed information about the paths. The output tab will be update every time a new node is added.\r\n" + 
-							"";
+							"The output tab will have 2 fields, one for the list of paths and one for the list of nodes in the  \n" + 
+							"critical path. The output tab will also have 3 buttons, one for report creation, one to find the critical path and one to change \n" + 
+							"the duration of a node. \n";
 					
 					JOptionPane pane = new JOptionPane(helpBut);
 					JDialog window = pane.createDialog("Help");
@@ -170,7 +169,7 @@ public class gui extends JFrame {
 				}
 
 
-				/*if(pathM.findUnconnected(joe)==1) {
+				if(pathM.findUnconnected(joe)==1) {
 
 
 					String errorExtraFirst= "Error, unconnected node detected reseting inputs";
@@ -183,7 +182,7 @@ public class gui extends JFrame {
 					textField_4.setText("");
 					textField_3.setText("Activity Name:\t\t\tPredicessor(s):\t\t\tDuration:\n");
 					
-				}*/ 
+				}
                 pathList = pathM.MakePaths(joe);
                 textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
                 output ="Output Path(s): \n";
@@ -431,7 +430,7 @@ public class gui extends JFrame {
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					//put crit path stuff here
-				String outputCrit = "";
+				String outputCrit = "Critical Path(s): \n";
 				ArrayList<Path> critPaths = pathM.findCriticalPaths(pathList);
 				for(int i=0; i<critPaths.size();i++)
                 {
